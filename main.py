@@ -19,8 +19,9 @@ def printer(msg):
 
 def foo():
     contents = urllib.request.urlopen(url).read()
+    print(contents.decode("utf8"))
     ifttt_url = "https://maker.ifttt.com/trigger/iphone_appeared/json/with/key/" + os.getenv('IFTTT_TOKEN')
-    if "We’re not taking reservations to buy iPhone in the store right now." in contents.decode("utf8"):
+    if "re not taking reservations to buy iPhone in the store right now." in contents.decode("utf8"):
         printer('not got it')
     else:
         printer('GOT IT')
