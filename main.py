@@ -106,7 +106,7 @@ def foo():
     if len(store_msg) > 0:
         printer(store_msg)
         send_telegram(store_msg + url)
-        # r = requests.post(ifttt_url, json={"msg": store_msg})
+        r = requests.post(ifttt_url, json={"msg": store_msg})
     else:
         printer('not got it')
 
