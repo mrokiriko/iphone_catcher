@@ -9,7 +9,7 @@ import json
 
 load_dotenv()
 
-# url = "https://reserve-prime.apple.com/AE/en_AE/reserve/A/availability?iUP=N"
+url = "https://reserve-prime.apple.com/AE/en_AE/reserve/A/availability?iUP=N"
 availability_url = "https://reserve-prime.apple.com/AE/en_AE/reserve/A/availability.json"
 ifttt_url = "https://maker.ifttt.com/trigger/iphone_appeared/json/with/key/" + os.getenv('IFTTT_TOKEN')
 
@@ -74,6 +74,13 @@ store_names = {
 }
 
 
+def send_telegram(message):
+    token = os.getenv('TELEGRAM_TOKEN')
+    chat_id = os.getenv('TELEGRAM_CHAT_ID')
+    url = f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat_id}&text={message}"
+    print(requests.get(url).json())  # this sends the message
+
+
 def availability_message(stores, store_code):
     message = ""
     store = stores[store_code]
@@ -98,7 +105,8 @@ def foo():
     # if content.count("true") > 1:
     if len(store_msg) > 0:
         printer(store_msg)
-        r = requests.post(ifttt_url, json={"msg": store_msg})
+        send_telegram(store_msg + url)
+        # r = requests.post(ifttt_url, json={"msg": store_msg})
     else:
         printer('not got it')
 
