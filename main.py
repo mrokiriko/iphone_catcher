@@ -115,4 +115,4 @@ while True:
     except Exception as exception:
         printer("error occurred")
         traceback.print_exc()
-    time.sleep(10)
+    time.sleep(1)
