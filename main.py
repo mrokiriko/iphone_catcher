@@ -102,7 +102,7 @@ def foo():
     store_msg = store1 + store2
 
     # if content.count("true") > 1:
-    if len(store_msg) > 0:
+    if len(store_msg) > 0 and ("256GB" in store_msg or "128GB" in store_msg):
         printer(store_msg)
         send_telegram(store_msg + url)
     else:
