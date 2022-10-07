@@ -11,7 +11,6 @@ load_dotenv()
 
 url = "https://reserve-prime.apple.com/AE/en_AE/reserve/A/availability?iUP=N"
 availability_url = "https://reserve-prime.apple.com/AE/en_AE/reserve/A/availability.json"
-ifttt_url = "https://maker.ifttt.com/trigger/iphone_appeared/json/with/key/" + os.getenv('IFTTT_TOKEN')
 
 
 def get_time():
@@ -106,7 +105,6 @@ def foo():
     if len(store_msg) > 0:
         printer(store_msg)
         send_telegram(store_msg + url)
-        r = requests.post(ifttt_url, json={"msg": store_msg})
     else:
         printer('not got it')
 
